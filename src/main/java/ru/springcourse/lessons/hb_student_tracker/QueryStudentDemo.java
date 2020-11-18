@@ -1,9 +1,9 @@
-package ru.springcourse.lessons;
+package ru.springcourse.lessons.hb_student_tracker;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.springcourse.lessons.entities.Student;
+import ru.springcourse.lessons.hb_student_tracker.entities.Student;
 
 import java.util.List;
 

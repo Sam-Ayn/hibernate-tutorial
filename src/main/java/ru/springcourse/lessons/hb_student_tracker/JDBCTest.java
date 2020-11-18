@@ -1,4 +1,4 @@
-package ru.springcourse.lessons;
+package ru.springcourse.lessons.hb_student_tracker;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

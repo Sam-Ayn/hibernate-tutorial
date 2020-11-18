@@ -1,11 +1,11 @@
-package ru.springcourse.lessons;
+package ru.springcourse.lessons.hb_student_tracker;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.springcourse.lessons.entities.Student;
+import ru.springcourse.lessons.hb_student_tracker.entities.Student;
 
-public class DeleteStudentDemo {
+public class CreateStudentDemo {
     public static void main(String[] args) {
 
         SessionFactory factory = new Configuration()
@@ -16,13 +16,9 @@ public class DeleteStudentDemo {
         Session session = factory.getCurrentSession();
 
         try {
-            int studentId = 1;
+            Student student = new Student("Paul", "Wall","paul@gmail.com");
             session.beginTransaction();
-            Student student = session.get(Student.class, studentId);
-            System.out.println("Getting complete: " + student);
-            //session.delete(student); can't delete null object
-
-            session.createQuery("delete from Student where id = 6").executeUpdate();
+            session.save(student);
             session.getTransaction().commit();
         } finally {
             factory.close();

@@ -1,12 +1,13 @@
-package ru.springcourse.lessons;
+package ru.springcourse.lessons.hb_student_tracker;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.springcourse.lessons.entities.Student;
+import ru.springcourse.lessons.hb_student_tracker.entities.Student;
 
-public class PrimaryKeyDemo {
+public class DeleteStudentDemo {
     public static void main(String[] args) {
+
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
@@ -15,13 +16,13 @@ public class PrimaryKeyDemo {
         Session session = factory.getCurrentSession();
 
         try {
-            Student student1 = new Student("Peter", "Jackson","jackson@gmail.com");
-            Student student2 = new Student("Jacob", "Hertings","hertings@gmail.com");
-            Student student3 = new Student("Maria", "Espinoza","espinoza@gmail.com");
+            int studentId = 1;
             session.beginTransaction();
-            session.save(student1);
-            session.save(student2);
-            session.save(student3);
+            Student student = session.get(Student.class, studentId);
+            System.out.println("Getting complete: " + student);
+            //session.delete(student); can't delete null object
+
+            session.createQuery("delete from Student where id = 6").executeUpdate();
             session.getTransaction().commit();
         } finally {
             factory.close();

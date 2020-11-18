@@ -1,11 +1,11 @@
-package ru.springcourse.lessons;
+package ru.springcourse.lessons.hb_student_tracker;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.springcourse.lessons.entities.Student;
+import ru.springcourse.lessons.hb_student_tracker.entities.Student;
 
-public class CreateStudentDemo {
+public class ReadStudentDemo {
     public static void main(String[] args) {
 
         SessionFactory factory = new Configuration()
@@ -16,9 +16,15 @@ public class CreateStudentDemo {
         Session session = factory.getCurrentSession();
 
         try {
-            Student student = new Student("Paul", "Wall","paul@gmail.com");
+            Student student = new Student("Buffy", "Winterbringer","buffy@gmail.com");
             session.beginTransaction();
             session.save(student);
+            session.getTransaction().commit();
+
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            Student newStudent = session.get(Student.class, student.getId());
+            System.out.println("Getting complete: " + newStudent);
             session.getTransaction().commit();
         } finally {
             factory.close();

@@ -1,4 +1,4 @@
-package ru.springcourse.lessons.entities;
+package ru.springcourse.lessons.hb_student_tracker.entities;
 
 import javax.persistence.*;
 
